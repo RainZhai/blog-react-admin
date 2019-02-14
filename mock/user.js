@@ -2,54 +2,56 @@
 export default {
   // 支持值为 Object 和 Array
   'GET /api/currentUser': {
-    name: 'BiaoChenXuying',
-    // avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
-    avatar: 'http://p61te2jup.bkt.clouddn.com/WechatIMG8.jpeg',
-    userid: '00000001',
-    email: 'antdesign@alipay.com',
-    signature: '海纳百川，有容乃大',
-    title: '交互专家',
-    group: 'BiaoChenXuying',
-    tags: [
-      {
-        key: '0',
-        label: '很有想法的',
+    data: {
+      name: 'BiaoChenXuying',
+      // avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+      avatar: 'http://p61te2jup.bkt.clouddn.com/WechatIMG8.jpeg',
+      userid: '00000001',
+      email: 'antdesign@alipay.com',
+      signature: '海纳百川，有容乃大',
+      title: '交互专家',
+      group: 'BiaoChenXuying',
+      tags: [
+        {
+          key: '0',
+          label: '很有想法的',
+        },
+        {
+          key: '1',
+          label: '专注设计',
+        },
+        {
+          key: '2',
+          label: '辣~',
+        },
+        {
+          key: '3',
+          label: '大长腿',
+        },
+        {
+          key: '4',
+          label: '川妹子',
+        },
+        {
+          key: '5',
+          label: '海纳百川',
+        },
+      ],
+      notifyCount: 12,
+      country: 'China',
+      geographic: {
+        province: {
+          label: '浙江省',
+          key: '330000',
+        },
+        city: {
+          label: '杭州市',
+          key: '330100',
+        },
       },
-      {
-        key: '1',
-        label: '专注设计',
-      },
-      {
-        key: '2',
-        label: '辣~',
-      },
-      {
-        key: '3',
-        label: '大长腿',
-      },
-      {
-        key: '4',
-        label: '川妹子',
-      },
-      {
-        key: '5',
-        label: '海纳百川',
-      },
-    ],
-    notifyCount: 12,
-    country: 'China',
-    geographic: {
-      province: {
-        label: '浙江省',
-        key: '330000',
-      },
-      city: {
-        label: '杭州市',
-        key: '330100',
-      },
+      address: '西湖区工专路 77 号',
+      phone: '0752-268888888',
     },
-    address: '西湖区工专路 77 号',
-    phone: '0752-268888888',
   },
   // GET POST 可省略
   'GET /api/users': [
@@ -83,6 +85,32 @@ export default {
       return;
     }
     if (password === '123456' && userName === 'user') {
+      res.send({
+        status: 'ok',
+        type,
+        currentAuthority: 'user',
+      });
+      return;
+    }
+    res.send({
+      status: 'error',
+      type,
+      currentAuthority: 'guest',
+    });
+  },
+  'POST /api/loginAdmin': (req, res) => {
+    const { email, type } = req.body;
+    if (email === 'admin') {
+      res.send({
+        code: 0,
+        data: {},
+        status: 'ok',
+        type,
+        currentAuthority: 'admin',
+      });
+      return;
+    }
+    if (email === 'user') {
       res.send({
         status: 'ok',
         type,

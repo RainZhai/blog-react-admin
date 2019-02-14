@@ -7,13 +7,11 @@ import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 import styles from './Workplace.less';
 
-@connect(({ user,activities, loading }) => ({
+@connect(({ user, activities, loading }) => ({
   currentUser: user.currentUser,
   activities,
   currentUserLoading: loading.effects['user/fetchCurrent'],
 }))
-
-
 class Workplace extends PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -25,8 +23,7 @@ class Workplace extends PureComponent {
     // });
   }
 
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
 
   renderActivities() {
     const {
@@ -66,11 +63,7 @@ class Workplace extends PureComponent {
   }
 
   render() {
-    const {
-      currentUser,
-      currentUserLoading,
-    } = this.props;
-
+    const { currentUser, currentUserLoading } = this.props;
     const pageHeaderContent =
       currentUser && Object.keys(currentUser).length ? (
         <div className={styles.pageHeaderContent}>
@@ -116,7 +109,9 @@ class Workplace extends PureComponent {
         extraContent={extraContent}
       >
         <Row gutter={24}>
-          <Col xl={16} lg={24} md={24} sm={24} xs={24}>内容</Col>
+          <Col xl={16} lg={24} md={24} sm={24} xs={24}>
+            内容
+          </Col>
         </Row>
       </PageHeaderWrapper>
     );
