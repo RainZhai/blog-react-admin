@@ -1,0 +1,3 @@
+[submodule "src/antdShared"]
+	path = src/antdShared
+	url = https://github.com/RainZhai/antdShared.git
